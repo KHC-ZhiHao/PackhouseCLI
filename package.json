@@ -1,6 +1,6 @@
 {
   "name": "packhouse-cli",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "packhouse command line tool",
   "main": "packhouse.js",
   "scripts": {},
@@ -16,7 +16,7 @@
     "command line tool"
   ],
   "author": "khczhihao",
-  "license": "SEE LICENSE IN LICENSE",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/KHC-ZhiHao/PackhouseCLI/issues"
   },
