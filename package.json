@@ -1,0 +1,31 @@
+{
+  "name": "packhouse-cli",
+  "version": "0.0.1",
+  "description": "packhouse command line tool",
+  "main": "packhouse.js",
+  "scripts": {},
+  "bin": {
+    "packhouse": "./packhouse.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KHC-ZhiHao/PackhouseCLI.git"
+  },
+  "keywords": [
+    "packhouse",
+    "command line tool"
+  ],
+  "author": "khczhihao",
+  "license": "SEE LICENSE IN LICENSE",
+  "bugs": {
+    "url": "https://github.com/KHC-ZhiHao/PackhouseCLI/issues"
+  },
+  "homepage": "https://github.com/KHC-ZhiHao/PackhouseCLI#readme",
+  "dependencies": {
+    "commander": "^3.0.0",
+    "fn-args": "^5.0.0",
+    "packhouse": "git+https://github.com/KHC-ZhiHao/Packhouse.git",
+    "ts-node": "^8.5.4",
+    "watch": "^1.0.2"
+  }
+}
