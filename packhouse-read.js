@@ -5,6 +5,7 @@ const program = require('commander')
 const packhouse = require('packhouse')
 const functionArguments = require('fn-args')
 
+let $mainPath = null
 let $packhouse = null
 
 program
@@ -15,8 +16,15 @@ program
     .option('--main <file path>', 'Main file path, default is src/main.')
     .parse(process.argv)
 
-function getRequirePath(funcString) {
-    return (funcString.match(/require\(.*?\)/i)[0] || '').replace('require', '').slice(2, -2).trim()
+function getRequirePath(funcString, merger) {
+    if (merger) {
+        let parent = (merger.match(/require\(.*?\)/i)[0] || '').replace('require', '').slice(2, -2).trim()
+        let local = (funcString.match(/require\(.*?\)/i)[0] || '').replace('require', '').slice(2, -2).trim()
+        return path.normalize($mainPath + '/' + parent + '/' + local)
+    } else {
+        let local = (funcString.match(/require\(.*?\)/i)[0] || '').replace('require', '').slice(2, -2).trim()
+        return path.normalize($mainPath + '/' + local)
+    }
 }
 
 function getGroups(groups) {
@@ -43,7 +51,7 @@ function getMergers(mergers) {
         for (let name in result.groups) {
             output[sign].groups.push({
                 name: name,
-                path: getRequirePath(result.groups[name].toString()) || null,
+                path: getRequirePath(result.groups[name].toString(), mergers[sign].toString()) || null,
                 ...result.groups[name](getDeepObject()).data
             })
         }
@@ -223,6 +231,7 @@ function writeFile(root, mainPath) {
 }
 
 function main(root, mainPath) {
+    $mainPath = path.dirname(mainPath)
     if (program.print) {
         console.log(JSON.stringify(compile(mainPath), null, 4))
         return null
