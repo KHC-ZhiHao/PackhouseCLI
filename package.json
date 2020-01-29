@@ -1,6 +1,6 @@
 {
   "name": "packhouse-cli",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "packhouse command line tool",
   "main": "packhouse.js",
   "scripts": {},
@@ -24,6 +24,7 @@
   "dependencies": {
     "commander": "^3.0.0",
     "fn-args": "^5.0.0",
+    "fs-extra": "^8.1.0",
     "packhouse": "git+https://github.com/KHC-ZhiHao/Packhouse.git",
     "ts-node": "^8.5.4",
     "watch": "^1.0.2"

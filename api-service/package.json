@@ -1,0 +1,19 @@
+{
+    "name": "packhouse",
+    "version": "1.0.0",
+    "main": "serverless.yml",
+    "scripts": {
+        "deploy": "mocha && serverless deploy",
+        "remove": "serverless remove"
+    },
+    "devDependencies": {
+        "aws-sdk": "^2.610.0",
+        "chai": "^4.2.0",
+        "nyc": "^15.0.0",
+        "serverless-plugin-split-stacks": "^1.9.3"
+    },
+    "dependencies": {
+        "packhouse": "^2.0.0",
+        "@hapi/joi": "^17.1.0"
+    }
+}

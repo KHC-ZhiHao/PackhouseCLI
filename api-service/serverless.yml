@@ -1,0 +1,43 @@
+service: packhouse
+
+custom:
+  splitStacks:
+    perType: false
+    perFunction: false
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  role: YOUR-IAM-ROLE
+  stage: v1
+  region: us-east-1
+  timeout: 30
+  memorySize: 256
+
+plugins:
+  - serverless-plugin-split-stacks
+
+functions:
+  Hello:
+    handler: src/handlers/hello.handler
+    events:
+      - http:
+          path: /hello
+          method: get
+          cors: true
+
+resources:
+  Resources:
+    MessageTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: 'Messages'
+        AttributeDefinitions:
+          - AttributeName: createdAt
+            AttributeType: N
+        KeySchema:
+          - AttributeName: createdAt
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
